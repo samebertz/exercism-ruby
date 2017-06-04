@@ -3,10 +3,10 @@ class Squares
     @n = n
   end
   def square_of_sum
-    [*(0...@n)].map{|i| i+1}.reduce(:+) ** 2 rescue 0
+    (@n*(@n+1) / 2.0)**2
   end
   def sum_of_squares
-    [*(0...@n)].map{|i| (i+1)**2}.reduce(:+) + 0 rescue 0
+    (2*@n**3 + 3*@n**2 + @n) / 6.0
   end
   def difference
     square_of_sum - sum_of_squares
