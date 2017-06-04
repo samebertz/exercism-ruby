@@ -1,7 +1,7 @@
 class Pangram
-  ALPHABET = (97..122).to_a.reduce(""){|s,i| s<<i}
-  def self.pangram?(phrase)
-    (ALPHABET.split("") - phrase.downcase.split("")).empty?
+  CHARSET_EN_LOWERCASE = (97..122).to_a.map{|i| i.chr}
+  def self.pangram?(phrase, alphabet: CHARSET_EN_LOWERCASE)
+    (alphabet - phrase.downcase.chars).empty?
   end
 end
 
