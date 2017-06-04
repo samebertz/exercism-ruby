@@ -5,7 +5,7 @@ require_relative 'gigasecond'
 # Common test data version: 1.0.0 61e7d70
 class GigasecondTest < Minitest::Test
   def test_date_only_specification_of_time
-    skip
+    # skip
     assert_equal Time.utc(2043, 1, 1, 1, 46, 40), Gigasecond.from(Time.utc(2011, 4, 25, 0, 0, 0))
   end
 
