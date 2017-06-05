@@ -1,22 +1,17 @@
 class RunLengthEncoding
   class << self
     def encode(data)
-      code, current, count = "", "", -1
-      data.chars.each { |chr|
-        if chr == current
-          count += 1
+      count = data.chars.reduce([[]]) do |memo, obj|
+        if obj == memo[-1][0]
+          memo[-1][1] += 1
         else
-          count += 1
-          code << count.to_s if count > 1
-          code << current
-          count = 0
+          memo << [obj, 1]
         end
-        current = chr
-      }
-      count += 1
-      code << count.to_s if count > 1
-      code << current
-      code
+        memo
+      end[1..-1]
+      count.reduce("") do |memo, obj|
+        memo << obj[0].prepend(obj[1] == 1 ? "" : obj[1].to_s)
+      end
     end
     def decode(code)
       count = 1
