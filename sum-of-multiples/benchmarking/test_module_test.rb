@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'minitest/autorun'
-require_relative 'classes'
+require_relative 'test'
 
 TEST_APPROACHES = {
   naive: ->(n) {
