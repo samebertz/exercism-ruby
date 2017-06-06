@@ -10,7 +10,7 @@ class SchoolTest < Minitest::Test
   end
 
   def test_add_student
-    skip
+    # skip
     school = School.new
     assert school.add('Aimee', 2)
     expected = ['Aimee']
@@ -18,7 +18,7 @@ class SchoolTest < Minitest::Test
   end
 
   def test_add_students_to_different_grades
-    skip
+    # skip
     school = School.new
     school.add('Aimee', 3)
     school.add('Beemee', 7)
@@ -27,7 +27,7 @@ class SchoolTest < Minitest::Test
   end
 
   def test_grade_with_multiple_students
-    skip
+    # skip
     school = School.new
     grade    = 6
     students = %w(Aimee Beemee Ceemee)
@@ -36,7 +36,7 @@ class SchoolTest < Minitest::Test
   end
 
   def test_grade_with_multiple_students_sorts_correctly
-    skip
+    # skip
     school = School.new
     grade    = 6
     students = %w(Beemee Aimee Ceemee)
@@ -46,14 +46,14 @@ class SchoolTest < Minitest::Test
   end
 
   def test_empty_students_by_grade
-    skip
+    # skip
     school = School.new
     expected = []
     assert_equal expected, school.students_by_grade
   end
 
   def test_students_by_grade
-    skip
+    # skip
     school = School.new
     grade    = 6
     students = %w(Beemee Aimee Ceemee)
@@ -63,7 +63,7 @@ class SchoolTest < Minitest::Test
   end
 
   def test_students_by_grade_sorted
-    skip
+    # skip
     school = School.new
     everyone.each do |grade|
       grade[:students].each { |student| school.add(student, grade[:grade]) }
@@ -106,7 +106,7 @@ class SchoolTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-    skip
+    # skip
     assert_equal 3, BookKeeping::VERSION
   end
 end
