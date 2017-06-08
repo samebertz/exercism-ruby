@@ -1,11 +1,9 @@
 class Series
-  def initialize(digits)
-    @digits = digits
+  def initialize(str)
+    @str = str
   end
   def slices(n)
-    raise ArgumentError if n > @digits.length
-    @digits[0..-n].chars.each.with_index.reduce([]) do |memo, (obj, i)|
-      memo << @digits[i...i+n]
-    end
+    raise ArgumentError if n > @str.size
+    @str[0..-n].chars.each.with_index.reduce([]){|m, (o, i)|m<<@str[i...i+n]}
   end
 end
