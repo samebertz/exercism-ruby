@@ -7,16 +7,16 @@ module Test
       @multiples = []
       @i = 0
     end
-    # def to(n)
-    #   while @i * @factors[0] < n
-    #     @factors.each { |e| @multiples << e * @i }
-    #     @i += 1
-    #   end
-    #   @multiples & [*(0...n)]
-    # end
-    # def sum_to(n)
-    #   to(n).reduce(0,:+)
-    # end
+    def to(n)
+      while @i * @factors[0] < n
+        @factors.each { |e| @multiples << e * @i }
+        @i += 1
+      end
+      @multiples & [*(0...n)]
+    end
+    def sum_to(n)
+      to(n).reduce(0,:+)
+    end
     def sum_to_with_approach(n, approach)
       to = instance_exec(n, &@@approaches[approach])
       to.reduce(0,:+)
