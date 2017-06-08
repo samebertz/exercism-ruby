@@ -4,6 +4,7 @@ class Series
   end
   def slices(n)
     raise ArgumentError if n > @str.size
-    @str[0..-n].chars.each.with_index.reduce([]){|m, (o, i)|m<<@str[i...i+n]}
+    i=-1
+    @str[0..-n].chars.map.reduce([]){|m,o| m << @str[(i+=1)...i+n]}
   end
 end
