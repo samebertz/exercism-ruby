@@ -2,6 +2,8 @@
 require 'minitest/autorun'
 require_relative 'strain'
 
+using PatchArrayStrain
+
 class ArrayTest < Minitest::Test
   def test_empty_keep
     assert_equal [], [].keep { |e| e < 10 }
