@@ -44,22 +44,22 @@ class TrinaryTest < Minitest::Test
 
   def test_invalid_trinary_is_decimal_0
     # skip
-    assert_equal 0, Trinary.new('carrot').to_decimal
+    assert_raises(ArgumentError) { Trinary.new('carrot').to_decimal }
   end
 
   def test_invalid_trinary_with_digits_is_decimal_0
     # skip
-    assert_equal 0, Trinary.new('0a1b2c').to_decimal
+    assert_raises(ArgumentError) { Trinary.new('0a1b2c').to_decimal }
   end
 
   def test_invalid_trinary_with_multiline_string
     # skip
-    assert_equal 0, Trinary.new("Invalid\n201\nString").to_decimal
+    assert_raises(ArgumentError) { Trinary.new("Invalid\n201\nString").to_decimal }
   end
 
   def test_number_out_of_range
     # skip
-    assert_equal 0, Trinary.new('4').to_decimal
+    assert_raises(ArgumentError) { Trinary.new('4').to_decimal }
   end
 
   # Problems in exercism evolve over time, as we find better ways to ask
