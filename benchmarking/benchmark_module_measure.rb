@@ -1,5 +1,5 @@
 require "benchmark"
-require_relative "benchmark_framework_module"
+require_relative "benchmark_module_framework"
 module BenchmarkModule
   TESTS = 1_000
   class Measure

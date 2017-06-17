@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'minitest/autorun'
-require_relative 'benchmark_framework_module'
+require_relative 'benchmark_module_framework'
 
 TEST_BLOCKS = {
   ary_to_s: ->(*str) {str.to_s},
