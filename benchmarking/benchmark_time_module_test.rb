@@ -8,30 +8,30 @@ TEST_BLOCKS = {
 }
 
 class BenchmarkTimeModuleTest < Minitest::Test
-  include BenchmarkTimeModule
+  include BenchmarkModule
   def test_time_method
-    benchmark = BenchmarkTime.new(TEST_BLOCKS)
+    benchmark = Measure.new(TEST_BLOCKS)
     time_results = benchmark.time_method(:ary_to_s)
     assert time_results.has_key?(:ary_to_s)
     assert time_results[:ary_to_s].instance_of?(Benchmark::Tms)
     assert_equal time_results[:ary_to_s].label, :ary_to_s.to_s
   end
   def test_time_method_with_args
-    benchmark = BenchmarkTime.new(TEST_BLOCKS)
+    benchmark = Measure.new(TEST_BLOCKS)
     time_results = benchmark.time_method(:ary_to_s, args="test")
     assert time_results.has_key?(:ary_to_s)
     assert time_results[:ary_to_s].instance_of?(Benchmark::Tms)
     assert_equal time_results[:ary_to_s].label, :ary_to_s.to_s
   end
   def test_time_method_with_tests
-    benchmark = BenchmarkTime.new(TEST_BLOCKS)
+    benchmark = Measure.new(TEST_BLOCKS)
     time_results = benchmark.time_method(:ary_to_s, tests=10_000)
     assert time_results.has_key?(:ary_to_s)
     assert time_results[:ary_to_s].instance_of?(Benchmark::Tms)
     assert_equal time_results[:ary_to_s].label, :ary_to_s.to_s
   end
   def test_time_method_with_args_and_tests
-    benchmark = BenchmarkTime.new(TEST_BLOCKS)
+    benchmark = Measure.new(TEST_BLOCKS)
     time_results = benchmark.time_method(:ary_to_s, tests=10_000)
     assert time_results.has_key?(:ary_to_s)
     assert time_results[:ary_to_s].instance_of?(Benchmark::Tms)
@@ -42,7 +42,7 @@ class BenchmarkTimeModuleTest < Minitest::Test
     assert_equal time_results[:ary_to_s].label, :ary_to_s.to_s
   end
   def test_time_all
-    benchmark = BenchmarkTime.new(TEST_BLOCKS)
+    benchmark = Measure.new(TEST_BLOCKS)
     time_results = benchmark.time_all
     TEST_BLOCKS.each_key do |block_name|
       assert time_results.has_key?(block_name)

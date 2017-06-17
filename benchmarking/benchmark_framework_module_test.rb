@@ -8,42 +8,38 @@ TEST_BLOCKS = {
 }
 
 class BenchmarkFrameworkModuleTest < Minitest::Test
-  include BenchmarkFrameworkModule
-  def test_add_method
-    BenchmarkFramework.add_method(:ary_to_s,
-                                  &TEST_BLOCKS[:ary_to_s])
+  include BenchmarkModule
+  def setup
+    @framework = Framework.new
+  end
 
-    assert BenchmarkFramework.blocks.has_key?(:ary_to_s)
-    assert BenchmarkFramework.blocks.has_value?(TEST_BLOCKS[:ary_to_s])
-    assert_equal BenchmarkFramework.blocks[:ary_to_s],
-                 TEST_BLOCKS[:ary_to_s]
+  def test_add_method
+    @framework.add_method(:ary_to_s, &TEST_BLOCKS[:ary_to_s])
+    assert @framework.blocks.has_key?(:ary_to_s)
+    assert @framework.blocks.has_value?(TEST_BLOCKS[:ary_to_s])
+    assert_equal @framework.blocks[:ary_to_s], TEST_BLOCKS[:ary_to_s]
   end
 
   def test_clear_methods
-    BenchmarkFramework.add_method(:ary_to_s,
-                                  &TEST_BLOCKS[:ary_to_s])
-    BenchmarkFramework.clear_methods
-
-    assert_empty BenchmarkFramework.blocks
+    @framework.add_method(:ary_to_s, &TEST_BLOCKS[:ary_to_s])
+    @framework.clear_methods
+    assert_empty @framework.blocks
   end
 
-  def test_set_methods
-    BenchmarkFramework.clear_methods
-    BenchmarkFramework.set_methods(TEST_BLOCKS)
-
+  def test_set_blocks
+    @framework.clear_methods
+    @framework.blocks = TEST_BLOCKS
     TEST_BLOCKS.each_pair do |name, method|
-      assert BenchmarkFramework.blocks.has_key?(name)
-      assert BenchmarkFramework.blocks.has_value?(method)
-      assert_equal BenchmarkFramework.blocks[name], method
+      assert @framework.blocks.has_key?(name)
+      assert @framework.blocks.has_value?(method)
+      assert_equal @framework.blocks[name], method
     end
   end
 
   def test_use_method
-    BenchmarkFramework.add_method(:ary_to_s,
-                                  &TEST_BLOCKS[:ary_to_s])
-    assert_equal "[\"test\"]", BenchmarkFramework.use_method(:ary_to_s, "test")
-    BenchmarkFramework.add_method(:ary_inspect,
-                                  &TEST_BLOCKS[:ary_inspect])
-    assert_equal "[\"test\"]", BenchmarkFramework.use_method(:ary_inspect, "test")
+    @framework.add_method(:ary_to_s, &TEST_BLOCKS[:ary_to_s])
+    assert_equal "[\"test\"]", @framework.use_method(:ary_to_s, "test")
+    @framework.add_method(:ary_inspect, &TEST_BLOCKS[:ary_inspect])
+    assert_equal "[\"test\"]", @framework.use_method(:ary_inspect, "test")
   end
 end
